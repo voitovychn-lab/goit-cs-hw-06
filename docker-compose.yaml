@@ -1,0 +1,19 @@
+
+services:
+  # Контейнер із нашим Python-застосунком
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  # Контейнер із базою даних MongoDB
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo_data:/data/db
+
+# Зберігання даних MongoDB поза контейнером
+volumes:
+  mongo_data:
